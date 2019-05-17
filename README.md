@@ -15,7 +15,10 @@ está compuesta por 10 columnas con los datos organizados de izquierda a derecha
 9. Mitoses: 1 - 10 
 10. Class: (2 for benign, 4 for malignant)
 
-Backpropagation.py da como salidas el resultado esperado y la predicción del algoritmo,
+Backpropagation.py se entrena por 200 épocas y luego da como salidas el resultado esperado y la predicción del algoritmo,
 si la preducción fue correcta la línea es visualizada con fuente color verde, de lo contrario la fuente es roja.
 Finalmente se muestra la presición del algoritmo.
+
+NOTA: El código utiliza para el formato de colores de fuente códigos de escape ANSI, por lo tanto solo se pueden
+visualizar correctamente los colores de fuente en las salidas en sistemas LINUX/UNIX o en un entorno como PyCharm en Windows.
 
