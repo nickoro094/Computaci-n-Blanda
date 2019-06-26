@@ -163,13 +163,13 @@ class EngineFL:
     def __init__(self):
         self.definition = 0
 
-    def variable(self, string, x, y):
+    def variable(self, *args):
         pass
 
     def output_variable(self, *args):
         pass
 
-    def rule_block(self, variable, rule):
+    def rule_block(self, rule):
         pass
 
     def process(self, *args):
