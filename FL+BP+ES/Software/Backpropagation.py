@@ -95,15 +95,24 @@ def defuzzifier(data):
     return defuzzy_data
 
 def expert_KnwB(riesgo, data):
-    p_data = (data[0] + data[1]) / 2
+    p_data = ((data[0] + data[1]) / 2) - 0.2
     final_risk = riesgo * p_data
 
-    if final_risk > 60:
+    if(data[0] and data[1]) == 3:
+        final_risk = 70
+
+    if final_risk > 66:
         print('\x1b[1;31;49mPeligro! Transitar con cuidado')
+        if data[0] == 3:
+            print('\x1b[1;31;49mVelocidad Recomendada: 10- 30 Km/h')
+        else:
+            print('\x1b[1;31;49mVelocidad Recomendada: 20- 40 Km/h')
     elif final_risk <= 35:
-        print('\x1b[1;32;49mEs seguro transitar')
+        print('\x1b[1;34;49mEs seguro transitar')
+        print('\x1b[1;34;49mVelocidad Recomendada: 45- 90 Km/h')
     else:
-        print('Precaucion al transitar')
+        print('\x1b[1;32;49mPrecaucion al transitar')
+        print('\x1b[1;32;49mVelocidad Recomendada: 30- 60 Km/h')
 
 # Backpropagate errores y actualizar neuronas
 def backward_propagate_error(network, expected):
@@ -167,8 +176,13 @@ def str_column_to_int(dataset, column):
 
 if __name__ == '__main__':
     seed(1)
-    # dia, mes, año, carretera, lluvia, codigo
-    data_pick = ['10', 'junio', '2019', 'regular', 'moderada']
+    # hora, mes, año, carretera, lluvia, codigo
+    data_pick = [['02', 'junio', '2012', 'regular', 'moderada'],
+                 ['05', 'enero', '2018', 'mala', 'poca'],
+                 ['10', 'enero', '2015', 'buena', 'poca'],
+                 ['18', 'febrero', '2017', 'regular', 'mucha'],
+                 ['22', 'agosto', '2019', 'mala', 'mucha'],
+                 ['20', 'julio', '2019', 'buena', 'mucha']]
 
     dataset = load_csv('training_set.csv')
     for i in range(len(dataset[0]) - 1):
@@ -195,9 +209,13 @@ if __name__ == '__main__':
         i = i+1
 
     riesgo = float(((accuracy_delta) * 100) / i)
+    error_rn = riesgo * 0.01
     #print('\x1b[1;37;49mPrecision = %f%%' % riesgo)
+    for i in data_pick:
+        expert_in = defuzzifier(i)
+        expert_KnwB(riesgo, expert_in)
 
-    expert_in = defuzzifier(data_pick)
-    expert_KnwB(riesgo, expert_in)
+    print('\x1b[0mError =', error_rn)
+
 
 
