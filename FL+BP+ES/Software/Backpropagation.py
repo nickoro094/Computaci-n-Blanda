@@ -2,6 +2,7 @@ from math import exp
 from random import seed
 from random import random
 from csv import reader
+from FuzzyLogic import *
 import sys
 
 
@@ -77,6 +78,7 @@ def predict(network, row):
 
 
 def defuzzifier(data):
+    Riesgo(0, 0, 0, 0, 0)
     defuzzy_data = ['0','0']
     if data[3] == 'mala':
         defuzzy_data[0] = 3

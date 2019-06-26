@@ -35,14 +35,6 @@ eng.output_variable(Hora, 2, "Triangular", (11, 13, 14))
 eng.output_variable(Hora, 3, "Triangular", (14, 16, 18))
 eng.output_variable(Hora, 4, "Triangular", (18, 21, 23))
 
-Dia = eng.variable("Dia", 1, 7)
-eng.output_variable(Dia, "Lunes")
-eng.output_variable(Dia, "Martes")
-eng.output_variable(Dia, "Miercoles")
-eng.output_variable(Dia, "Jueves")
-eng.output_variable(Dia, "Viernes")
-eng.output_variable(Dia, "Sabado")
-eng.output_variable(Dia, "Domingo")
 
 Mes = eng.variable("Mes", 1, 12)
 eng.output_variable(Mes, "Enero")
@@ -99,7 +91,6 @@ def Riesgo(A, B, C, D, E):
     festadocarretera = eng.process(A, Estado_carretera)
     fpresencialluvia = eng.process(B, lluvia)
     fhora = eng.process(C, Hora)
-    fdia = eng.process(D, Dia)
     fmes = eng.process(E, Mes)
     Resultado = eng.process(A, B, C, D, E)
     return Resultado
