@@ -15,7 +15,7 @@
  fuzzylite is a registered trademark of FuzzyLite Limited.
 """
 
-__all__ = ["Engine"]
+__all__ = ["EngineFL"]
 
 import enum
 from math import nan
@@ -157,3 +157,21 @@ class Engine:
 
     def infer_type(self) -> Tuple['Engine.Type', str]:
         raise NotImplementedError()
+
+
+class EngineFL:
+    def __init__(self):
+        self.definition = 0
+
+    def variable(self, string, x, y):
+        pass
+
+    def output_variable(self, *args):
+        pass
+
+    def rule_block(self, variable, rule):
+        pass
+
+    def process(self, *args):
+        pass
+
