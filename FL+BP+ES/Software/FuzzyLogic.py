@@ -2,7 +2,7 @@ from fuzzylite import *
 
 # Variables: Estado_carretera, lluvia, Hora, Dia, Mes, Riesgo
 
-eng = Engine
+eng = EngineFL
 
 Estado_carretera = eng.variable("Estado_carretera", 0, 100)
 eng.output_variable(Estado_carretera, "Mala")
@@ -90,6 +90,9 @@ eng.rule_block(reglas, "if Estado_carretera is Regular and lluvia is Excesiva th
 eng.rule_block(reglas, "if Estado_carretera is Buena and lluvia is Poca then Riesgo Bajo")
 eng.rule_block(reglas, "if Estado_carretera is Buena and lluvia is Moderada then Riesgo Medio")
 eng.rule_block(reglas, "if Estado_carretera is Buena and lluvia is Excesiva then Riesgo Medio")
+eng.rule_block(reglas, "if Estado_carretera is Buena and lluvia is Poca then Riesgo Bajo")
+eng.rule_block(reglas, "if Estado_carretera is Rrgular and lluvia is Moderada then Riesgo Medio")
+eng.rule_block(reglas, "if Estado_carretera is Mala and lluvia is Excesiva then Riesgo Medio")
 
 
 def Riesgo(A, B, C, D, E):
